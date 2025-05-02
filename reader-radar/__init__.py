@@ -1,6 +1,9 @@
 import os
 
 from flask import Flask
+from flask import (
+    render_template,
+)  # note that I added this but we prob dont need it if we use blueprints
 
 
 def create_app(test_config=None):
@@ -16,7 +19,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
-        SECRET_KEY="dev",
+        SECRET_KEY="better-great-very-good-reads",
         # store the database in the instance folder
         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
@@ -36,7 +39,7 @@ def create_app(test_config=None):
 
     @app.route("/hello")
     def hello():
-        return "Hello, World!"
+        return render_template("helloworld.html")
 
     # register the database commands
     from . import db
@@ -44,11 +47,11 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # apply the blueprints to the app
-    from . import auth
-    from . import blog
+    # from . import auth
+    # from . import blog
 
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(blog.bp)
+    # app.register_blueprint(auth.bp)
+    # app.register_blueprint(blog.bp)
 
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
