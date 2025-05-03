@@ -10,6 +10,10 @@ body {color:black; font-family: Baskervville; font-size: 20px; font-style:normal
 
 }
 
+h2 {align-self: flex-start; color:black; font-family: Baskervville; font-size: 25px; font-style:normal; font-weight: 400; line-height: normal
+
+}
+
 a:any-link {
     text-decoration: none !important;
 }
@@ -114,16 +118,28 @@ a:any-link {
   .card {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 10px;
   }
 
+  .current-grid, .unread-grid, .wishlist-grid, .finished-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: flex-start;
+    margin:0;
+    padding:0;
+  }
+
+.current-section, .unread-section, .wishlist-section, .finished-section  {
+  padding: 60px 80px;
+}
   .card .button {
-    align-self: auto; /* Don't stretch */
-    margin-top: 10px;
+    align-self: flex-start; /* Don't stretch */
   }
   .card img {
-    width: 100%;
+    width: 300px;
     height: auto;
     aspect-ratio: 2 / 3; 
     object-fit: cover;
