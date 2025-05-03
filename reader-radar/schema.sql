@@ -1,15 +1,14 @@
 -- Initialize the database.
 -- Drop any existing data and create empty tables.
 
-PRAGMA foreign_keys = ON;
-
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS names;
 DROP TABLE IF EXISTS relationships;
 DROP TABLE IF EXISTS book_lists;
 DROP TABLE IF EXISTS book_list_items;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS names;
+
 
 
 CREATE TABLE users (
