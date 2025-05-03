@@ -97,3 +97,29 @@ def get_book(id):
     if book is None:
         abort(404, f"Book id {id} doesn't exist")
     return book
+
+
+# get top books
+def get_top_books():
+    """Get top three books based on ratings"""
+    books = (
+        get_db()
+        .execute("SELECT * FROM books ORDER BY external_ratings DESC LIMIT 3")
+        .fetchall()
+    )
+    return books
+
+
+# get random book recommendation
+def get_random_recommendation():
+    """Get random recommendation between 4 and 5 stars"""
+    book = (
+        get_db()
+        .execute(
+            "SELECT * FROM books "
+            "WHERE external_ratings >= 4"
+            "ORDER BY RANDOM() LIMIT 1"
+        )
+        .fetchone()
+    )
+    return book
