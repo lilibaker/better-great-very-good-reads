@@ -57,7 +57,8 @@ CREATE TABLE books (
   author TEXT NOT NULL,
   isbn INTEGER NOT NULL,
   page_length INTEGER NOT NULL,
-  synopsis TEXT NOT NULL
+  synopsis TEXT NOT NULL,
+  external_ratings FLOAT NOT NULL
 );
 
 CREATE TABLE reviews (
