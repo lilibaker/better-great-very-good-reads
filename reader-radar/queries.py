@@ -14,31 +14,36 @@ from .auth import login_required
 from .db import get_db
 
 
-# init my lists
-# def render_my_lists(user_id):
-#   """Get books lists and books for my lists page."""
-#   book_lists = get_book_lists(user_id)
-#   books = get_user_books(user.id)
-#   return render_template("mylists.html", book_lists, books)
+def get_book_list_books(list_name, user_id):
+    """
+    Get books for list given id.
+    """
+    # step 1
+    book_list = (
+        get_db()
+        .execute(
+            "SELECT id FROM book_lists WHERE user_id = ? AND list_name = ?",
+            (user_id, list_name),
+        )
+        .fetchone()
+    )
 
+    if book_list is None:
+        return None
 
-# def get_book_list_books(list_name):
-#     """
-#     Get books for list given id.
-#     """
-#     books_lists = (
-#         get_db()
-#         .execute(
-#             "SELECT b.id, user_id, list_name"
-#             "FROM book_list b JOIN user u ON b.user_id = u.id"  #! change this if login logic knows user id
-#             "WHERE b.list_name = ?"(
-#                 list_name,
-#             ),
-#         )
-#         .fetchall()
-#     )
+    books = (
+        get_db()
+        .execute(
+            "SELECT b.id, b.title, b.author"
+            "FROM books b "
+            "JOIN book_list_items bli ON b.id = bli.book_id "
+            "WHERE bli.list_id = ?",
+            (book_list["id"],),
+        )
+        .fetchall()
+    )
 
-#     return books_lists
+    return books
 
 
 # def get_book_list_items()
