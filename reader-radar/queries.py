@@ -49,7 +49,23 @@ from .db import get_db
 
 # get review text
 
+
 # get books by title or author
+def broad_search(search_string):
+    """Get books that match in author or title"""
+
+    books = (
+        get_db()
+        .execute(
+            "SELECT b.id, title, author"
+            " FROM books b "
+            " WHERE title LIKE '%' || ? || '%' OR author LIKE '%' || ? || '%'",
+            (search_string, search_string),
+        )
+        .fetchall()
+    )
+
+    return books
 
 
 # get book page
