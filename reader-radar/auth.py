@@ -40,7 +40,7 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = (
-            get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
+            get_db().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
         )
 
 
@@ -80,7 +80,7 @@ def register():
         if error is None:
             try:
                 new_user_command = (
-                    f"INSERT INTO user (username, password)"
+                    f"INSERT INTO users (username, password)"
                     f" VALUES ('{username}', '{hash_password(password)}')"
                 )
                 db.execute(new_user_command)
@@ -107,7 +107,7 @@ def login():
         db = get_db()
         error = None
         query = (
-            f"SELECT * FROM user WHERE username = '{username}' AND"
+            f"SELECT * FROM users WHERE username = '{username}' AND"
             f" password = '{hash_password(password)}';"
         )
         user = db.execute(query).fetchone()
