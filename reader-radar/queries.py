@@ -47,7 +47,20 @@ from .db import get_db
 
 # get ratings
 
+
 # get review text
+def get_reviews(book_id):
+    reviews = (
+        get_db()
+        .execute(
+            "SELECT r.id, book_id, user_id, rating, review_text, created_at"
+            " FROM reviews r"
+            " WHERE r.book_id = ?",
+            (book_id,),
+        )
+        .fetchall()
+    )
+    return reviews
 
 
 # get books by title or author
