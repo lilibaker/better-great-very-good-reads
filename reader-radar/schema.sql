@@ -35,15 +35,14 @@ CREATE TABLE relationships (
 );
 
 CREATE TABLE book_lists (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
-  book_name TEXT NOT NULL,
+  list_name TEXT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE book_list_items (
-  id INTEGER PRIMARY KEY,
   book_list_id INTEGER NOT NULL,
   book_id INTEGER NOT NULL,
   added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -55,7 +54,10 @@ CREATE TABLE book_list_items (
 CREATE TABLE books (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
-  author TEXT NOT NULL
+  author TEXT NOT NULL,
+  isbn INTEGER NOT NULL,
+  page_length INTEGER NOT NULL,
+  synopsis TEXT NOT NULL
 );
 
 CREATE TABLE reviews (
