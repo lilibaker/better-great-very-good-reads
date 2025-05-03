@@ -14,6 +14,7 @@ from .auth import login_required
 from .db import get_db
 
 
+# get books in a given book list
 def get_book_list_books(list_name, user_id):
     """
     Get books for list given id.
@@ -46,15 +47,9 @@ def get_book_list_books(list_name, user_id):
     return books
 
 
-# def get_book_list_items()
-
-# get books in list
-
-# get ratings
-
-
 # get review text
 def get_reviews(book_id):
+    """Get reviews based on book_id"""
     reviews = (
         get_db()
         .execute(
