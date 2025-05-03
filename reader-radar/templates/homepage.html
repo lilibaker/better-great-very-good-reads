@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body style = "background-color: #fffaf8;">
 
 <div class="topnav">
     <a href="#ReaderRadar" class="active">Reader Radar</a>
@@ -24,15 +24,15 @@
     <h1 class="section-title">Popular Right Now</h1>
     <div class="popular-grid">
       <div class="card">
-        <img src="https://placehold.co/395x600" alt="Item 1" />
+        <img id="popular1" src="https://placehold.co/395x600" alt="Item 1" />
         <div class="button">Add to wishlist</div>
       </div>
       <div class="card">
-        <img src="https://placehold.co/391x600" alt="Item 2" />
+        <img id= "popular2" src="https://placehold.co/391x600" alt="Item 2" />
         <div class="button">Add to wishlist</div>
       </div>
       <div class="card">
-        <img src="https://placehold.co/411x600" alt="Item 3" />
+        <img id="popular3" src="https://placehold.co/411x600" alt="Item 3" />
         <div class="button">Add to wishlist</div>
       </div>
     </div>
@@ -43,21 +43,45 @@
     </h1>
     <div class="recommendation-grid">
       <div class="recommendation-image">
-        <img src="https://placehold.co/600x800" alt="Recommendation" />
+        <img id="rec_image" src="https://placehold.co/600x800" alt="recommendation" />
       </div>
       <div class="recommendation-content">
         <h1 class="section-title">Author Name</h1>
-        <div class = "stars">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star unchecked"></span>
-            <span class="fa fa-star unchecked"></span>
+        <div class = "icons" id="starContainer">
+            <!-- Stars will be inserted here -->
         </div>
-        <textarea placeholder="Enter synopsis here..."></textarea>
+        <body id="rec_synopsis"> This is a paragraph</body>
       </div>
     </div>
   </div>
+  
+<script>
+  // Rating for the recommendation of the day
+  const rating = 4; // Change this number to dynamically update stars
+
+  const starContainer = document.getElementById("starContainer");
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement("span");
+    if (i <= rating) {
+      star.className = "fa fa-star checked";
+    } else {
+      star.className = "fa fa-star-o";
+    }
+    starContainer.appendChild(star);
+  }
+</script>
 
 </body>
 </html>
+
+
+<!--<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star-o"></span>
+<span class="fa fa-star-o"></span>--
+
+this is how you add stars the checked ones are filled in and fa fa-star-o is unchecked
+fa fa-star-half-o is if you have a half star
+using font awesome 4 for this
+>

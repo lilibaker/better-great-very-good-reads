@@ -24,10 +24,12 @@ a:any-link {
     font-size: 20px;
     border-radius: 10px;
     text-decoration: none;
+    font-family: Baskervville;
 }
 
 .button:hover {
-    box-shadow: 5px 3px rgba(0,0,0,0.12)
+    box-shadow: 5px 3px rgba(0,0,0,0.12);
+    cursor: pointer;
 }
 
 .topnav{
@@ -54,6 +56,7 @@ a:any-link {
 .topnav a:hover {
     border-bottom: 3px solid black;
     text-decoration: none;
+    cursor: pointer;
   }
 
 .topnav a.active {
@@ -68,6 +71,8 @@ a:any-link {
     margin-top: 15.5;
     font-size: 20px;
     padding: 10px 20px;
+    border-radius:8px;
+    background-color: #fffaf8;
 }
 
 .topnav button {
@@ -124,6 +129,10 @@ a:any-link {
     object-fit: cover;
     border-radius: 8px;
   }
+  .card img:hover {
+    box-shadow: 5px 3px rgba(0,0,0,0.12);
+    cursor: pointer;
+}
   
   .recommendation-section {
     padding: 60px 80px;
@@ -142,6 +151,11 @@ a:any-link {
     height: auto;
     border-radius: 8px;
   }
+
+    .recommendation-image img:hover {
+    box-shadow: 5px 3px rgba(0,0,0,0.12);
+    cursor: pointer;
+}
   
   .recommendation-content {
     display: flex;
@@ -154,23 +168,16 @@ a:any-link {
     height: auto;
     border-radius: 8px;
   }
-  
-  .recommendation-content textarea {
-    width: 100%;
-    height: 300px;
-    padding: 15px;
-    font-family: 'Baskervville', serif;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    resize: vertical;
-    background-color: #fffaf8;
+ 
+  .recommendation-grids {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 80px;
   }
+
 
   .checked {
-    color:#2F7A7A;
+    color:black;
   }
 
-  .unchecked {
-    color:#fffaf8;
-  }
