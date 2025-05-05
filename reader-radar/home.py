@@ -15,7 +15,7 @@ from . import queries
 bp = Blueprint("/", __name__)
 
 
-@bp.route("/home")
+@bp.route("/")
 def index():
     """Show recommended books"""
     books = queries.get_top_books()

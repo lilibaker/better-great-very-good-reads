@@ -54,8 +54,6 @@ def create_app(test_config=None):
     # app.register_blueprint(library.bp)
     app.register_blueprint(search.bp)
 
-    app.add_url_rule("/", endpoint="home")
-
     app.debug = True
 
     return app
