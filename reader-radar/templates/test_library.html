@@ -1,0 +1,73 @@
+<!-- add extend base url -->
+
+{% block header %}
+  <h1>{% block title %}Book{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<!-- Display book list name -->
+<h1>{{ current.list_name }}</h1>
+
+<div class="book-list">
+    {% for book in current %}
+    <div class="book-item">
+        <h3>{{ book.title }}</h3>
+        <form method="POST" action="{{ url_for('move-book') }}">
+            <input type="hidden" name="book_id" value="{{ books.id }}">
+            
+            <!-- Current list the book belongs to (you might need to adjust this) -->
+            <input type="hidden" name="old_list_id" value="5"> <!-- Example current list ID -->
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List:</label>
+            <select name="new_list_id" id="new_list">
+                <option value="1">Current</option>
+                <option value="2">Unread</option>
+                <option value="3">Wish List</option>
+                <option value="4">Finished</option>
+                {% for list in lists %}
+                    <option value="{{ list.id }}">{{ list.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <button type="submit">Move to List</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- Display book list name -->
+<h1>{{ unread.list_name }}</h1>
+
+<div class="book-list">
+    {% for book in unread %}
+    <div class="book-item">
+        <h3>{{ book.title }}</h3>
+        <form method="POST" action="{{ url_for('move-book') }}">
+            <input type="hidden" name="book_id" value="{{ books.id }}">
+            
+            <!-- Current list the book belongs to (you might need to adjust this) -->
+            <input type="hidden" name="old_list_id" value="1"> <!-- Example current list ID -->
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List:</label>
+            <select name="new_list_id" id="new_list">
+
+                <option value="1">Current</option>
+                <option value="2">Unread</option>
+                <option value="3">Wish List</option>
+                <option value="4">Finished</option>
+                {% for list in lists %}
+                    <option value="{{ list.id }}">{{ list.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <button type="submit">Move to List</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

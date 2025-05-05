@@ -31,3 +31,36 @@ def library():
         wish_list=wish_list,
         finished=finished,
     )
+
+
+@bp.route("/move-book", methods=["GET", "POST"])
+@login_required
+def move_book():
+    """Add book to new list"""
+    if request.method == "POST":
+        book_id = request.form["book_id"]
+        new_list_id = request.form["list_id"]
+        old_list_id = request.form["old_list_id"]
+        error = None
+
+        if not book_id or new_list_id:
+            error = "No book or list"
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "INSERT INTO book_list_items (list_id, book_id) VALUES (?, ?)",
+                (new_list_id, book_id),
+            )
+            db.execute(
+                "DELETE FROM book_list_items WHERE book_id = ? AND book_list_id = ?'",
+                (book_id, old_list_id)
+            )
+            db.commit()
+            return redirect(url_for("library"))
+
+    return render_template(
+        "library.html"
+    ) 
