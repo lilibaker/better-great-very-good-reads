@@ -26,9 +26,7 @@
     <div class="current-grid" id="currentGrids">
       {% for book in current %}
       <div class="card">
-        <div>
-          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
-        </div>
+        {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
           <button class="button">Move to Finished</button>
@@ -44,9 +42,7 @@
     <div class="unread-grid" id="unreadGrids">
       {% for book in unread %}
       <div class="card">
-        <div>
-          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
-        </div>
+        {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
           <button class="button">Move to Currently Reading</button>
@@ -62,9 +58,7 @@
     <div class="wishlist-grid" id="wishlistGrid">
       {% for book in wish_list %}
       <div class="card">
-        <div>
-          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
-        </div>
+        {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
           <button class="button">Move to Unread</button>
@@ -80,9 +74,7 @@
     <div class="finished-grid" id="finishedGrids">
       {% for book in finished %}
       <div class="card">
-        <div>
-          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
-        </div>
+        {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
           <button class="button">Review</button>
