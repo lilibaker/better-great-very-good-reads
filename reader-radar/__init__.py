@@ -10,12 +10,6 @@ def create_app(test_config=None):
     """
     Create and configure an instance of the Flask application.
     """
-    # The app should take __name__ (here, defaults to flaskr) unless there's a
-    # good reason otherwise:
-    # https://flask.palletsprojects.com/en/3.0.x/api/#application-object
-    # The instance_relative_config allows configurations per instance of this
-    # app, setting defaults for all instances of flaskr:
-    # https://flask.palletsprojects.com/en/3.0.x/config/#instance-folders
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
@@ -37,6 +31,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # simple html page to test the app
     @app.route("/hello")
     def hello():
         return render_template("helloworld.html")
@@ -48,16 +43,17 @@ def create_app(test_config=None):
 
     # apply the blueprints to the app
     # from . import auth
-    # from . import blog
+    from . import book
+    from . import home
+    # from . import library
+    from . import search
 
     # app.register_blueprint(auth.bp)
-    # app.register_blueprint(blog.bp)
+    app.register_blueprint(book.bp)
+    app.register_blueprint(home.bp)
+    # app.register_blueprint(library.bp)
+    app.register_blueprint(search.bp)
 
-    # make url_for('index') == url_for('blog.index')
-    # in another app, you might define a separate main index here with
-    # app.route, while giving the blog blueprint a url_prefix, but for
-    # the tutorial the blog will be the main index
-    # app.add_url_rule("/", endpoint="index")
-    app.add_url_rule("/", endpoint="hello")  # this is temporary
+    app.debug = True
 
     return app

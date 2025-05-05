@@ -10,7 +10,7 @@ from werkzeug.exceptions import abort
 
 from .auth import login_required
 from .db import get_db
-import queries
+from . import queries
 
 bp = Blueprint("/", __name__)
 
@@ -20,4 +20,4 @@ def index():
     """Show recommended books"""
     books = queries.get_top_books()
     recommendation = queries.get_random_recommendation()
-    return render_template("index.html", books=books, recommendation=recommendation)
+    return render_template("home.html", books=books, recommendation=recommendation)

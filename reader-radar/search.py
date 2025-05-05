@@ -10,12 +10,13 @@ from werkzeug.exceptions import abort
 
 from .auth import login_required
 from .db import get_db
-import queries
+
+from . import queries
 
 bp = Blueprint("search", __name__)
 
 
-@bp.route("/search/<string:query>", methods=("GET"))
+@bp.route("/search/<string:query>", methods=["GET"])
 def search(query):
     """Show all the books and reviews"""
     books = queries.broad_search(query)

@@ -10,20 +10,25 @@ from werkzeug.exceptions import abort
 
 from .auth import login_required
 from .db import get_db
-import queries
+
+from . import queries
 
 bp = Blueprint("book", __name__)
 
 
-@bp.route("/book/<int:id>", methods=("GET"))
+@bp.route("/book/<int:id>", methods=["GET"])
 def book(id):
-    """Show all the books and reviews"""
+    """Show a specific book and its reviews."""
     book = queries.get_book(id)
     reviews = queries.get_reviews(id)
+
+    if book is None:
+        abort(404, f"Book with id {id} doesn't exist.")
+
     return render_template("book.html", book=book, reviews=reviews)
 
 
-@bp.route("/book/<int:id>/submit-review", methods=("GET", "POST"))
+@bp.route("/book/<int:id>/submit-review", methods=["GET", "POST"])
 @login_required
 def add_review(id):
     """Create a new post for the current user."""
