@@ -1,13 +1,5 @@
 import sqlite3
 
-from flask import Blueprint
-from flask import flash
-from flask import g  # store data for current request
-from flask import redirect
-from flask import render_template
-from flask import render_template_string
-from flask import request
-from flask import url_for
 from werkzeug.exceptions import abort
 
 from .auth import login_required
@@ -117,7 +109,7 @@ def get_random_recommendation():
         get_db()
         .execute(
             "SELECT * FROM books "
-            "WHERE external_ratings >= 4"
+            "WHERE external_ratings >= 4 "
             "ORDER BY RANDOM() LIMIT 1"
         )
         .fetchone()
