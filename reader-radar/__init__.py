@@ -44,13 +44,13 @@ def create_app(test_config=None):
     # apply the blueprints to the app
     # from . import auth
     from . import book
-    # from . import home
+    from . import home
     # from . import library
     # from . import search
 
     # app.register_blueprint(auth.bp)
     app.register_blueprint(book.bp)
-    # app.register_blueprint(home.bp)
+    app.register_blueprint(home.bp)
     # app.register_blueprint(library.bp)
     # app.register_blueprint(search.bp)
 

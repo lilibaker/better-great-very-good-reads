@@ -10,7 +10,8 @@ from werkzeug.exceptions import abort
 
 from .auth import login_required
 from .db import get_db
-import queries
+
+from . import queries
 
 bp = Blueprint("search", __name__)
 
