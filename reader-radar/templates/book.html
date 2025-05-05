@@ -6,7 +6,13 @@
 
 {% block content %}
 
+<!-- Display book cover using Open Library API -->
 <h1>{{ book.title }}</h1>
+
+{% if book.isbn %}
+  <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book Cover">
+{% endif %}
+
 <p>Author: {{ book.author }}</p>
 <p>ISBN: {{ book.isbn }}</p>
 <p>page_length: {{ book.page_length }}</p>
