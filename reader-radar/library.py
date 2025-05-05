@@ -54,17 +54,19 @@ def move_book():
         if error is not None:
             flash(error)
         else:
-            old_list_id = queries.get_book_list_id(old_list_name, g.user["id"])
-            new_list_id = queries.get_book_list_id(new_list_name, g.user["id"])
             db = get_db()
-            db.execute(
-                "INSERT INTO book_list_items (book_list_id, book_id) VALUES (?, ?)",
-                (new_list_id, book_id),
-            )
-            db.execute(
-                "DELETE FROM book_list_items WHERE book_id = ? AND book_list_id = ?",
-                (book_id, old_list_id),
-            )
+            if old_list_name != "":
+                old_list_id = queries.get_book_list_id(old_list_name, g.user["id"])
+                db.execute(
+                    "DELETE FROM book_list_items WHERE book_id = ? AND book_list_id = ?",
+                    (book_id, old_list_id),
+                )
+            if new_list_name != "Remove Book":
+                new_list_id = queries.get_book_list_id(new_list_name, g.user["id"])
+                db.execute(
+                    "INSERT INTO book_list_items (book_list_id, book_id) VALUES (?, ?)",
+                    (new_list_id, book_id),
+                )
             db.commit()
             print("Book moved successfully")
             return redirect(url_for("library.library"))
