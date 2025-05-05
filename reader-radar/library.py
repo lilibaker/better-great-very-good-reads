@@ -33,7 +33,7 @@ def library():
     )
 
 
-@bp.route("/move_book", methods=["GET", "POST"])
+@bp.route("/move-book", methods=["GET", "POST"])
 @login_required
 def move_book():
     """Add book to new list"""
