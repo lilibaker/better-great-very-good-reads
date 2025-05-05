@@ -62,7 +62,7 @@ def broad_search(search_string):
     books = (
         get_db()
         .execute(
-            "SELECT b.id, title, author"
+            "SELECT b.id, title, author, isbn, synopsis "
             " FROM books b "
             " WHERE title LIKE '%' || ? || '%' OR author LIKE '%' || ? || '%'",
             (search_string, search_string),
@@ -73,7 +73,6 @@ def broad_search(search_string):
     return books
 
 
-# get book page
 def get_book(id):
     """Get book by id"""
     book = (
