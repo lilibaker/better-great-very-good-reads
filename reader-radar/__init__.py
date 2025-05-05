@@ -46,13 +46,13 @@ def create_app(test_config=None):
     from . import book
     from . import home
     # from . import library
-    # from . import search
+    from . import search
 
     # app.register_blueprint(auth.bp)
     app.register_blueprint(book.bp)
     app.register_blueprint(home.bp)
     # app.register_blueprint(library.bp)
-    # app.register_blueprint(search.bp)
+    app.register_blueprint(search.bp)
 
     app.add_url_rule("/", endpoint="home")
 
