@@ -4,14 +4,16 @@
 <nav>
   <h1><a href="{{ url_for('index') }}">Flaskr</a></h1>
   <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
-    {% endif %}
-  <li><a href="{{ url_for('blog.search') }}">Search Posts</a>
+    <body style = "background-color: #fffaf8;">
+
+      <div class="topnav">
+          <a href="#ReaderRadar">Reader Radar</a>
+          <a href="#Library">Library</a>
+          <input type="text" placeholder="Search Books">
+          <button type="submit">
+              <img src="../Assets/search.png" alt="Search">
+          </button>
+      </div>
   </ul>
 </nav>
 <section class="content">
