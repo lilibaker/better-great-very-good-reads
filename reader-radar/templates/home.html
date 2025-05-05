@@ -10,12 +10,14 @@
 <body style = "background-color: #fffaf8;">
 
 <div class="topnav">
-    <a href="#ReaderRadar" class="active">Reader Radar</a>
-    <a href="#Library">Library</a>
-    <input type="text" placeholder="Search Books">
-    <button type="submit">
-        <img src="../Assets/search.png" alt="Search">
-    </button>
+    <a href="/" class="active">Reader Radar</a>
+    <a href="/library">Library</a>
+    <form action="/search" method="POST" style="display: inline;">
+      <input type="text" name="query" placeholder="Search Books" required>
+      <button type="submit">
+          <img src="{{ url_for('static', filename='Assets/search.png') }}" alt="Search">
+      </button>
+    </form>
 </div>
 
 <div class="popular-section">
