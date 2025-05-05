@@ -17,7 +17,7 @@ bp = Blueprint("library", __name__)
 
 
 @bp.route("/library")
-@login_required
+# @login_required
 def library():
     """Show all the booklists"""
     current = queries.get_book_list_books("Current Reads", g.user["id"])
@@ -25,7 +25,7 @@ def library():
     wish_list = queries.get_book_list_books("Wish List", g.user["id"])
     finished = queries.get_book_list_books("Finished", g.user["id"])
     return render_template(
-        "library.html",
+        "test_library.html",
         current=current,
         unread=unread,
         wish_list=wish_list,
@@ -34,33 +34,40 @@ def library():
 
 
 @bp.route("/move-book", methods=["GET", "POST"])
-@login_required
+# @login_required
 def move_book():
     """Add book to new list"""
     if request.method == "POST":
         book_id = request.form["book_id"]
-        new_list_id = request.form["list_id"]
-        old_list_id = request.form["old_list_id"]
+        new_list_name = request.form["new_list_name"]
+        old_list_name = request.form["old_list_name"]
         error = None
+        print("first one works")
+        print(book_id)
+        print(new_list_name)
+        print(old_list_name)
 
-        if not book_id or new_list_id:
-            error = "No book or list"
+        # if not book_id or new_list_name:
+        #     error = "No book or list"
+        #     print("No book or list")
 
         if error is not None:
             flash(error)
         else:
+            old_list_id = queries.get_book_list_id(old_list_name, g.user["id"])
+            new_list_id = queries.get_book_list_id(new_list_name, g.user["id"])
             db = get_db()
             db.execute(
-                "INSERT INTO book_list_items (list_id, book_id) VALUES (?, ?)",
+                "INSERT INTO book_list_items (book_list_id, book_id) VALUES (?, ?)",
                 (new_list_id, book_id),
             )
             db.execute(
-                "DELETE FROM book_list_items WHERE book_id = ? AND book_list_id = ?'",
-                (book_id, old_list_id)
+                "DELETE FROM book_list_items WHERE book_id = ? AND book_list_id = ?",
+                (book_id, old_list_id),
             )
             db.commit()
-            return redirect(url_for("library"))
+            print("Book moved successfully")
+            return redirect(url_for("library.library"))
 
-    return render_template(
-        "library.html"
-    ) 
+    print("Error moving book")
+    return redirect(url_for("library.library"))

@@ -114,3 +114,21 @@ def get_random_recommendation():
         .fetchone()
     )
     return book
+
+
+# get booklist id from name and user
+def get_book_list_id(list_name, user_id):
+    """Get book list id from name and user"""
+    book_list = (
+        get_db()
+        .execute(
+            "SELECT id FROM book_lists WHERE user_id = ? AND list_name = ?",
+            (user_id, list_name),
+        )
+        .fetchone()
+    )
+
+    if book_list is None:
+        return None
+
+    return book_list["id"]
