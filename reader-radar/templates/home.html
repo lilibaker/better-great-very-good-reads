@@ -27,7 +27,7 @@
   <div class="popular-grid">
     {% for book in books %}
     <div class="card">
-      <img id="popular{{ loop.index }}" src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}" />
+      {% include "cover.html" with context %}
       <div class="button">Add to wishlist</div>
     </div>
     {% endfor %}
@@ -38,7 +38,9 @@
     <h1 class="section-title">Recommendation of the Day</h1>
     <div class="recommendation-grid">
       <div class="recommendation-image">
-        <img id="rec_image" src="https://covers.openlibrary.org/b/isbn/{{ recommendation.isbn }}-L.jpg" alt="recommendation" />
+        <a href="/book/{{ recommendation.id }}">
+          <img id="rec_image" src="https://covers.openlibrary.org/b/isbn/{{ recommendation.isbn }}-L.jpg" alt="recommendation" />
+        </a>
       </div>
       <div class="recommendation-content">
         <h1 class="section-title">{{ recommendation.title }}</h1>
