@@ -27,10 +27,10 @@ def get_book_list_books(list_name, user_id):
     books = (
         get_db()
         .execute(
-            "SELECT b.id, b.title, b.author"
+            "SELECT b.id, b.title, b.author, b.isbn "
             "FROM books b "
             "JOIN book_list_items bli ON b.id = bli.book_id "
-            "WHERE bli.list_id = ?",
+            "WHERE bli.book_list_id = ?",
             (book_list["id"],),
         )
         .fetchall()

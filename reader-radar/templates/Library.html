@@ -22,7 +22,17 @@
     <div style="padding-top: 50px;"></div>
     <h1 class="section-title">Currently Reading</h1>
     <div class="current-grid" id="currentGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in current %}
+      <div class="card">
+        <div>
+          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
+        </div>
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <button class="button">Move to Finished</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -30,7 +40,17 @@
   <div class="unread-section">
     <h1 class="section-title">Unread Books</h1>
     <div class="unread-grid" id="unreadGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in unread %}
+      <div class="card">
+        <div>
+          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
+        </div>
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <button class="button">Move to Currently Reading</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -38,7 +58,17 @@
   <div class="wishlist-section">
     <h1 class="section-title">Wishlist</h1>
     <div class="wishlist-grid" id="wishlistGrid">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in wish_list %}
+      <div class="card">
+        <div>
+          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
+        </div>
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <button class="button">Move to Unread</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -46,94 +76,20 @@
   <div class="finished-section">
     <h1 class="section-title">Finished Books</h1>
     <div class="finished-grid" id="finishedGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in finished %}
+      <div class="card">
+        <div>
+          <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
+        </div>
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <button class="button">Review</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
-
-  <script>
-    // Example data for dynamic sections
-    const bookData = {
-      "current": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 2'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 3'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 4'}
-
-      ],
-      "unread": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Unread Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Unread Book 2'}
-      ],
-      "wishlist": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 2'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 3'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 4'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 5'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 6'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 7'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 8'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 9'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 10'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 11'}
-      ],
-      "finished": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Finished Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Finished Book 2' }
-      ]
-    };
-
-    // Function to generate grids dynamically
-    function generateGrid(sectionId, data, sectionName) {
-      const container = document.getElementById(sectionId);
-      data.forEach(book => {
-        const gridDiv = document.createElement('div');
-        gridDiv.classList.add('card');
-        
-        const imageDiv = document.createElement('div');
-        const img = document.createElement('img');
-        img.src = book.imageSrc;
-        img.alt = book.title;
-        imageDiv.appendChild(img);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.classList.add('content');
-
-        const titleDiv = document.createElement('h2');
-        titleDiv.classList.add('card-title');
-        titleDiv.textContent = book.title;
-
-        const button = document.createElement('button');
-        button.classList.add('button');
-        
-        // Set button text based on the section
-        if (sectionName === 'finished') {
-          button.textContent = 'Review';
-        } else if (sectionName === 'current') {
-          button.textContent = 'Move to Finished';
-        } else if (sectionName === 'wishlist') {
-          button.textContent = 'Move to Unread';
-        } else if (sectionName === 'unread') {
-          button.textContent = 'Move to Currently Reading';
-        }
-
-        contentDiv.appendChild(titleDiv);
-        contentDiv.appendChild(button);
-
-        gridDiv.appendChild(imageDiv);
-        gridDiv.appendChild(contentDiv);
-
-        container.appendChild(gridDiv);
-      });
-    }
-
-    // Generate grids for all sections
-    generateGrid('currentGrids', bookData['current'], 'current');
-    generateGrid('unreadGrids', bookData['unread'], 'unread');
-    generateGrid('wishlistGrid', bookData['wishlist'], 'wishlist');
-    generateGrid('finishedGrids', bookData['finished'], 'finished');
-  </script>
-
+  
 </body>
 </html>
