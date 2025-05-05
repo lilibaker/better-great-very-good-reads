@@ -1,0 +1,27 @@
+<!-- add extend base url -->
+
+{% block header %}
+  <h1>{% block title %}Book{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ book.title }}</h1>
+<p>Author: {{ book.author }}</p>
+<p>ISBN: {{ book.isbn }}</p>
+<p>page_length: {{ book.page_length }}</p>
+<p>Synopsis: {{ book.synopsis }}</p>
+<p>rating: {{ book.rating }}</p>
+
+<!-- for review in review print review -->
+{% for review in reviews %}
+  <h2>Reviews</h2>
+  <p>Rating: {{ review.rating }}</p>
+  <p>{{ review.review_text }}</p>
+{% endfor %}
+
+
+{% endblock %}
+
+
+
