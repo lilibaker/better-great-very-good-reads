@@ -39,18 +39,18 @@
   </div>
 
   <div class="recommendation-section">
-    <h1 class="section-title">Reccomendation of the Day
-    </h1>
+    <h1 class="section-title">Recommendation of the Day</h1>
     <div class="recommendation-grid">
       <div class="recommendation-image">
-        <img id="rec_image" src="https://placehold.co/600x800" alt="recommendation" />
+        <img id="rec_image" src="https://covers.openlibrary.org/b/isbn/{{ recommendation.isbn }}-L.jpg" alt="recommendation" />
       </div>
       <div class="recommendation-content">
-        <h1 class="section-title">Author Name</h1>
+        <h1 class="section-title">{{ recommendation.title }}</h1>
+        <h2 class="section-subtitle">Author: {{ recommendation.author }}</h2>
         <div class = "icons" id="starContainer">
             <!-- Stars will be inserted here -->
         </div>
-        <body id="rec_synopsis"> This is a paragraph</body>
+        <body id="rec_synopsis">{{ recommendation.synopsis }}</body>
       </div>
     </div>
   </div>
