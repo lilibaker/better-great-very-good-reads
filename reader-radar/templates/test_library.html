@@ -22,6 +22,10 @@
             <!-- Select a new list to move the book to -->
             <label for="new_list">Move to List:</label>
             <select name="new_list_id" id="new_list">
+                <option value="1">Current</option>
+                <option value="2">Unread</option>
+                <option value="3">Wish List</option>
+                <option value="4">Finished</option>
                 {% for list in lists %}
                     <option value="{{ list.id }}">{{ list.name }}</option>
                 {% endfor %}
@@ -50,6 +54,11 @@
             <!-- Select a new list to move the book to -->
             <label for="new_list">Move to List:</label>
             <select name="new_list_id" id="new_list">
+
+                <option value="1">Current</option>
+                <option value="2">Unread</option>
+                <option value="3">Wish List</option>
+                <option value="4">Finished</option>
                 {% for list in lists %}
                     <option value="{{ list.id }}">{{ list.name }}</option>
                 {% endfor %}
