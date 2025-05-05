@@ -13,26 +13,7 @@
     {% for book in current %}
     <div class="book-item">
         <h3>{{ book.title }}</h3>
-        <form method="POST" action="/move-book">
-            <input type="hidden" name="book_id" value="{{ book.id }}">
-            
-            <!-- Current list the book belongs to (you might need to adjust this) -->
-            <input type="hidden" name="old_list_name" value="Current Reads"> <!-- Example Current Reads list ID -->
-            
-            <!-- Select a new list to move the book to -->
-            <label for="new_list">Move to List:</label>
-            <select name="new_list_name" id="new_list_name">
-                <option value="Current Reads">Current Reads Reads</option>
-                <option value="Unread">Unread</option>
-                <option value="Wish List">Wish List</option>
-                <option value="Finished">Finished</option>
-                <!-- {% for list in lists %}
-                    <option value="{{ list.id }}">{{ list.name }}</option>
-                {% endfor %} -->
-            </select>
-            
-            <button type="submit">Move to List</button>
-        </form>
+        {% include "_move_book_form.html" with book=book current_list_name="Current Reads" %}
     </div>
     {% endfor %}
 </div>
@@ -45,27 +26,7 @@
     {% for book in unread %}
     <div class="book-item">
         <h3>{{ book.title }}</h3>
-        <form method="POST" action="/move-book">
-            <input type="hidden" name="book_id" value="{{ book.id }}">
-            
-            <!-- Current  Reads list the book belongs to (you might need to adjust this) -->
-            <input type="hidden" name="old_list_name" value="Unread"> <!-- Example Current Reads list ID -->
-            
-            <!-- Select a new list to move the book to -->
-            <label for="new_list">Move to List:</label>
-            <select name="new_list_name" id="new_list_name">
-
-                <option value="Current Reads">Current Reads</option>
-                <option value="Unread">Unread</option>
-                <option value="Wish List">Wish List</option>
-                <option value="Finished">Finished</option>
-                <!-- {% for list in lists %}
-                    <option value="{{ list.id }}">{{ list.name }}</option>
-                {% endfor %} -->
-            </select>
-            
-            <button type="submit">Move to List</button>
-        </form>
+        {% include "_move_book_form.html" with book=book current_list_name="Unread" %}
     </div>
     {% endfor %}
 </div>
@@ -77,27 +38,7 @@
     {% for book in wish_list %}
     <div class="book-item">
         <h3>{{ book.title }}</h3>
-        <form method="POST" action="/move-book">
-            <input type="hidden" name="book_id" value="{{ book.id }}">
-            
-            <!-- Current Reads list the book belongs to (you might need to adjust this) -->
-            <input type="hidden" name="old_list_name" value="Wish List"> <!-- Example Current Reads list ID -->
-            
-            <!-- Select a new list to move the book to -->
-            <label for="new_list">Move to List:</label>
-            <select name="new_list_name" id="new_list_name">
-
-                <option value="Current Reads">Current Reads</option>
-                <option value="Unread">Unread</option>
-                <option value="Wish List">Wish List</option>
-                <option value="Finished">Finished</option>
-                <!-- {% for list in lists %}
-                    <option value="{{ list.id }}">{{ list.name }}</option>
-                {% endfor %} -->
-            </select>
-            
-            <button type="submit">Move to List</button>
-        </form>
+        {% include "_move_book_form.html" with book=book current_list_name="Wish List" %}
     </div>
     {% endfor %}
 </div>
@@ -109,26 +50,7 @@
     {% for book in finished %}
     <div class="book-item">
         <h3>{{ book.title }}</h3>
-        <form method="POST" action="/move-book">
-            <input type="hidden" name="book_id" value="{{ book.id }}">
-            
-            <!-- Current Reads list the book belongs to (you might need to adjust this) -->
-            <input type="hidden" name="old_list_name" value="Finished"> <!-- Example Current Reads list ID -->
-            
-            <!-- Select a new list to move the book to -->
-            <label for="new_list">Move to List:</label>
-            <select name="new_list_name" id="new_list_name">
-                <option value="Current Reads">Current Reads</option>
-                <option value="Unread">Unread</option>
-                <option value="Wish List">Wish List</option>
-                <option value="Finished">Finished</option>
-                <!-- {% for list in lists %}
-                    <option value="{{ list.id }}">{{ list.name }}</option>
-                {% endfor %} -->
-            </select>
-            
-            <button type="submit">Move to List</button>
-        </form>
+        {% include "_move_book_form.html" with book=book current_list_name="Finished" %}
     </div>
     {% endfor %}
 </div>

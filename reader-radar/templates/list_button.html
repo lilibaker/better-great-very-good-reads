@@ -1,0 +1,17 @@
+<form method="POST" action="/move-book">
+  <input type="hidden" name="book_id" value="{{ book.id }}">
+  
+  <!-- Current list the book belongs to -->
+  <input type="hidden" name="old_list_name" value="{{ current_list_name }}">
+  
+  <!-- Select a new list to move the book to -->
+  <label for="new_list">Move to List:</label>
+  <select name="new_list_name" id="new_list_name">
+      <option value="Current Reads" {% if current_list_name == "Current Reads" %}disabled{% endif %}>Current Reads</option>
+      <option value="Unread" {% if current_list_name == "Unread" %}disabled{% endif %}>Unread</option>
+      <option value="Wish List" {% if current_list_name == "Wish List" %}disabled{% endif %}>Wish List</option>
+      <option value="Finished" {% if current_list_name == "Finished" %}disabled{% endif %}>Finished</option>
+  </select>
+  
+  <button type="submit">Move to List</button>
+</form>
