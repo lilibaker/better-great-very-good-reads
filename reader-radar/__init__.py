@@ -35,11 +35,6 @@ def create_app(test_config=None):
     def set_dev_user():
         g.user = {"id": 1}
 
-    # simple html page to test the app
-    @app.route("/hello")
-    def hello():
-        return render_template("helloworld.html")
-
     # register the database commands
     from . import db
 
