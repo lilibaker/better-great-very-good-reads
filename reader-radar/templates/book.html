@@ -26,6 +26,37 @@
   <p>{{ review.review_text }}</p>
 {% endfor %}
 
+<div>
+  <form method="POST" action="/add-book">
+    <input type="hidden" name="book_id" value="{{ book.id }}">
+    
+    <!-- Current list the book belongs to -->
+    <input type="hidden" name="old_list_name" value="">
+    
+    <!-- Select a new list to move the book to -->
+    <label for="new_list">Move to List:</label>
+    <select name="new_list_name" id="new_list_name">
+        <option value="Current Reads" {% if current_list_name == "Current Reads" %}disabled{% endif %}>Current Reads</option>
+        <option value="Unread" {% if current_list_name == "Unread" %}disabled{% endif %}>Unread</option>
+        <option value="Wish List" {% if current_list_name == "Wish List" %}disabled{% endif %}>Wish List</option>
+        <option value="Finished" {% if current_list_name == "Finished" %}disabled{% endif %}>Finished</option>
+    </select>
+    
+    <button type="submit">Move to List</button>
+  </form>
+</div>
+
+<div>
+  <form method="POST" action="/book/submit-review">
+    <input type="hidden" name="book_id" value="{{ book.id }}">
+    
+    <!-- Select a new list to move the book to -->
+    <label for="review">Add review</label>
+    <textarea name="review_text" id="review_text"></textarea>
+    <input type="number" id="rating" name="rating" min="1" max="5">
+    <button type="submit">Submit</button>
+  </form>
+</div>
 
 {% endblock %}
 
