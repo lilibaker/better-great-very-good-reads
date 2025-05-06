@@ -26,28 +26,9 @@
   <h1 class="section-title">Results</h1>
   </div>
   <div class="recommendation-grids" id="recommendationGrids">
-    <!-- Dynamic grids will be inserted here by Python -->
   </div>
   <div style="padding-bottom: 100px;">
 </div>
-
-<!-- <div class="recommendation-grids" id="recommendationGrids">
-    {% for book in books %}
-    <div class="recommendation-grid">
-      <div class="recommendation-image">
-        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book cover for {{ book.title }}">
-      </div>
-      <div class="recommendation-content">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h1 class="section-title" style="margin: 0;">{{ book.author }}</h1>
-          <button class="button">Add to Wishlist</button>
-        </div>
-        </div>
-        <p id="rec_synopsis">{{ book.synopsis }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div> -->
 
 <div class="recommendation-grids" id="recommendationGrids">
 {% for book in books %}
@@ -66,102 +47,6 @@
 </div>
 {% endfor %}
 </div>
-  
-<script>
-  // Data for recommendations
-  const recommendations = [
-      {
-          imageSrc: 'https://placehold.co/600x800',
-          author: 'Author Name 1',
-          rating: 3,  // Number of filled stars
-          synopsis: 'This is a great book. Highly recommended!'
-      },
-      {
-          imageSrc: 'https://placehold.co/600x800',
-          author: 'Author Name 2',
-          rating: 4,  // Number of filled stars
-          synopsis: 'An insightful read. A must-have for your collection.'
-      },
-      // More recommendation objects can be added here
-  ];
-
-  // Function to generate recommendation grids
-//   function generateRecommendations() {
-//       const container = document.getElementById('recommendationGrids');
-//       recommendations.forEach(rec => {
-//           const gridDiv = document.createElement('div');
-//           gridDiv.classList.add('recommendation-grid');
-
-//           const imageDiv = document.createElement('div');
-//           imageDiv.classList.add('recommendation-image');
-//           const img = document.createElement('img');
-//           img.src = rec.imageSrc;
-//           img.alt = 'recommendation';
-//           imageDiv.appendChild(img);
-
-//           const contentDiv = document.createElement('div');
-//           contentDiv.classList.add('recommendation-content');
-
-//           const headerDiv = document.createElement('div');
-//           headerDiv.style.display = 'flex';
-//           headerDiv.style.justifyContent = 'space-between';
-//           headerDiv.style.alignItems = 'center';
-
-//           const authorH1 = document.createElement('h1');
-//           authorH1.classList.add('section-title');
-//           authorH1.textContent = rec.author;
-//           authorH1.style.margin = '0';
-
-//           const button = document.createElement('button');
-//           button.classList.add('button');
-//           button.textContent = 'Add to Wishlist';
-
-//           headerDiv.appendChild(authorH1);
-//           headerDiv.appendChild(button);
-
-
-//           const starDiv = document.createElement('div');
-//           starDiv.classList.add('icons');
-//           for (let i = 0; i < 5; i++) {
-//               const star = document.createElement('span');
-//               if (i < rec.rating) {
-//                   star.classList.add('fa', 'fa-star', 'checked');
-//               } else {
-//                   star.classList.add('fa', 'fa-star-o');
-//               }
-//               starDiv.appendChild(star);
-//           }
-
-//           const synopsisP = document.createElement('p');
-//           synopsisP.id = 'rec_synopsis';
-//           synopsisP.textContent = rec.synopsis;
-
-//           contentDiv.appendChild(headerDiv);
-//           contentDiv.appendChild(starDiv);
-//           contentDiv.appendChild(synopsisP);
-
-//           gridDiv.appendChild(imageDiv);
-//           gridDiv.appendChild(contentDiv);
-
-//           container.appendChild(gridDiv);
-//       });
-//   }
-
-//   // Call function to generate recommendation grids
-//   generateRecommendations();
-// </script>
 
 </body>
 </html>
-
-
-<!--<span class="fa fa-star checked"></span>
-// <span class="fa fa-star checked"></span>
-// <span class="fa fa-star checked"></span>
-// <span class="fa fa-star-o"></span>
-// <span class="fa fa-star-o"></span>--
-
-// this is how you add stars the checked ones are filled in and fa fa-star-o is unchecked
-// fa fa-star-half-o is if you have a half star
-// using font awesome 4 for this
-// >

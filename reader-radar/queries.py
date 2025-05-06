@@ -1,4 +1,3 @@
-import sqlite3
 
 from werkzeug.exceptions import abort
 from flask import request
@@ -11,7 +10,6 @@ from .auth import login_required
 from .db import get_db
 
 
-# get books in a given book list
 def get_book_list_books(list_name, user_id):
     """
     Get books for list given id.
@@ -44,7 +42,6 @@ def get_book_list_books(list_name, user_id):
     return books
 
 
-# get review text
 def get_reviews(book_id):
     """Get reviews based on book_id"""
     reviews = (
@@ -60,7 +57,6 @@ def get_reviews(book_id):
     return reviews
 
 
-# get books by title or author
 def broad_search(search_string):
     """Get books that match in author or title"""
 
@@ -95,7 +91,6 @@ def get_book(id):
     return book
 
 
-# get top books
 def get_top_books():
     """Get top three books based on ratings"""
     books = (
@@ -106,7 +101,6 @@ def get_top_books():
     return books
 
 
-# get random book recommendation
 def get_random_recommendation():
     """Get random recommendation between 4 and 5 stars"""
     book = (
@@ -121,7 +115,6 @@ def get_random_recommendation():
     return book
 
 
-# get booklist id from name and user
 def get_book_list_id(list_name, user_id):
     """Get book list id from name and user"""
     book_list = (

@@ -3,12 +3,10 @@ from flask import flash
 from flask import g
 from flask import redirect
 from flask import render_template
-from flask import render_template_string
 from flask import request
 from flask import url_for
 from werkzeug.exceptions import abort
 
-from .auth import login_required
 from .db import get_db
 
 from . import queries
@@ -35,7 +33,6 @@ def add_review():
     review_text = request.form["review_text"]
     rating = request.form["rating"]
     
-    # dont do anything if form and rating blank
     if review_text == "" and not rating:
         flash("Please enter a review or rating.")
     
@@ -47,4 +44,4 @@ def add_review():
         )
         db.commit()
 
-    return redirect(url_for("book.book", id=book_id))  # Redirect to the book page
+    return redirect(url_for("book.book", id=book_id))

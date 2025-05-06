@@ -3,7 +3,6 @@ import os
 from flask import Flask
 from flask import g
 from flask import session
-from flask import redirect
 
 
 def create_app(test_config=None):
@@ -12,8 +11,6 @@ def create_app(test_config=None):
     """
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        # a default secret that should be overridden by instance config
-        SECRET_KEY="better-great-very-good-reads",
         # store the database in the instance folder
         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
