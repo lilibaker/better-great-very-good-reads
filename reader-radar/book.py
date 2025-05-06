@@ -32,10 +32,10 @@ def add_review():
     book_id = request.form["book_id"]
     review_text = request.form["review_text"]
     rating = request.form["rating"]
-    
+
     if review_text == "" and not rating:
         flash("Please enter a review or rating.")
-    
+
     else:
         db = get_db()
         db.execute(

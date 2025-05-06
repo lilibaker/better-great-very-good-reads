@@ -74,8 +74,8 @@ def register():
                     db.execute(
                         "INSERT INTO book_lists (user_id, list_name) VALUES (?, ?)",
                         (user_id, list_name),
-                )
-                
+                    )
+
                 db.commit()
             except db.IntegrityError:
                 # The username was already taken, which caused the

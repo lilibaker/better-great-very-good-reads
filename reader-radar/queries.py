@@ -1,4 +1,3 @@
-
 from werkzeug.exceptions import abort
 from flask import request
 from flask import flash
@@ -157,6 +156,7 @@ def add_book():
 
     print("Error moving book")
     return redirect(url_for("library.library"))
+
 
 def get_first_name(user_id):
     """Get first name of user"""

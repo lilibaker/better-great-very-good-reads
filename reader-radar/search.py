@@ -9,11 +9,13 @@ from . import queries
 
 bp = Blueprint("search", __name__)
 
+
 @bp.route("/search", methods=["POST"])
 def search_post():
     """Handle the search form submission and redirect to the search results page."""
     query = request.form.get("query", "").strip()
     return redirect(url_for("search.search", query=query))
+
 
 @bp.route("/search/<string:query>", methods=["GET"])
 def search(query):
