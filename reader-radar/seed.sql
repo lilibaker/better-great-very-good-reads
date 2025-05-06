@@ -2,9 +2,10 @@
 
 -- Insert users
 INSERT INTO users (username, password) VALUES
-('rose_tyler', 'badwolf'),
-('martha_jones', 'freedom'),
-('donna_noble', 'noble123');
+('rose', 'badwolf'),
+('martha', 'freedom'),
+('donna', 'noble123');
+
 
 -- Insert names
 INSERT INTO names (user_id, first_name, last_name) VALUES
@@ -20,9 +21,8 @@ INSERT INTO relationships (follower_id, followed_id) VALUES
 
 -- Insert books
 INSERT INTO books (title, author, isbn, page_length, external_ratings, synopsis) VALUES
-("The Time Traveler's Wife", "Audrey Niffenegger", 9781939126016, 546, 5, "This is the extraordinary love story of Clare and Henry, who met when Clare was six and Henry was thirty-six, and were married when Clare was twenty-two and Henry was thirty. Impossible but true, because Henry suffers from a rare condition where his genetic clock periodically resets and he finds himself pulled suddenly into his past or future. In the face of this force they can neither prevent nor control, Henry and Clare’s struggle to lead normal lives is both intensely moving and entirely unforgettable."),
+("The Time Traveler's Wife", "Audrey Niffenegger", 9781931561464, 546, 5, "This is the extraordinary love story of Clare and Henry, who met when Clare was six and Henry was thirty-six, and were married when Clare was twenty-two and Henry was thirty. Impossible but true, because Henry suffers from a rare condition where his genetic clock periodically resets and he finds himself pulled suddenly into his past or future. In the face of this force they can neither prevent nor control, Henry and Clare’s struggle to lead normal lives is both intensely moving and entirely unforgettable."),
 ("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 9780345418913, 224, 5, "Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor."),
-("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 9781338878929, 320, 4.1, "Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility. All he knows is a miserable life with the Dursleys, his horrible aunt and uncle, and their abominable son, Dudley - a great big swollen spoiled bully. Harry's room is a tiny closet at the foot of the stairs, and he hasn't had a birthday party in eleven years. But all that is about to change when a mysterious letter arrives by owl messenger: a letter with an invitation to an incredible place that Harry - and anyone who reads about him - will find unforgettable."),
 ("The Martian", "Andy Weir", 9780804139021, 384, 5, "Six days ago, astronaut Mark Watney became one of the first people to walk on Mars. Now, he’s sure he’ll be the first person to die there. After a dust storm nearly kills him and forces his crew to evacuate while thinking him dead, Mark finds himself stranded and completely alone with no way to even signal Earth that he’s alive—and even if he could get word out, his supplies would be gone long before a rescue could arrive. Chances are, though, he won’t have time to starve to death. The damaged machinery, unforgiving environment, or plain-old “human error” are much more likely to kill him first. But Mark isn’t ready to give up yet. Drawing on his ingenuity, his engineering skills—and a relentless, dogged refusal to quit—he steadfastly confronts one seemingly insurmountable obstacle after the next. Will his resourcefulness be enough to overcome the impossible odds against him?"),
 ("Dune", "Frank Herbert", 9780593099322, 658, 5, "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the “spice” melange, a drug capable of extending life and enhancing consciousness. Coveted across the known universe, melange is a prize worth killing for..."),
 ("Kafka on the Shore", "Haruki Murakami", 9781400079278, 467, 5, "Kafka on the Shore, a tour de force of metaphysical reality, is powered by two remarkable characters: a teenage boy, Kafka Tamura, who runs away from home either to escape a gruesome oedipal prophecy or to search for his long-missing mother and sister; and an aging simpleton called Nakata, who never recovered from a wartime affliction and now is drawn toward Kafka for reasons that, like the most basic activities of daily life, he cannot fathom. Their odyssey, as mysterious to them as it is to us, is enriched throughout by vivid accomplices and mesmerizing events. Cats and people carry on conversations, a ghostlike pimp employs a Hegel-quoting prostitute, a forest harbors soldiers apparently unaged since World War II, and rainstorms of fish (and worse) fall from the sky. There is a brutal murder, with the identity of both victim and perpetrator a riddle—yet this, along with everything else, is eventually answered, just as the entwined destinies of Kafka and Nakata are gradually revealed, with one escaping his fate entirely and the other given a fresh start on his own."),
@@ -44,20 +44,21 @@ INSERT INTO book_lists (user_id, list_name) VALUES
 (3, 'Current Reads'),
 (3, 'Unread'),
 (3, 'Wish List'),
-(3, 'Finished')
-;
+(3, 'Finished');
 
 -- Insert book list items
 INSERT INTO book_list_items (book_list_id, book_id) VALUES
 (1, 1),
 (1, 2),
-(2, 2),
 (2, 3),
-(3, 1),
-(3, 3);
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7);
 
 -- Insert reviews
 INSERT INTO reviews (book_id, user_id, rating, review_text) VALUES
 (1, 1, 5, 'A thought-provoking masterpiece.'),
 (2, 2, 4, 'A timeless classic.'),
 (3, 3, 5, 'An iconic piece of literature.');
+

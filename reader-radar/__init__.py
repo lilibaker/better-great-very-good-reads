@@ -1,9 +1,8 @@
 import os
 
 from flask import Flask
-from flask import (
-    render_template,
-)  # note that I added this but we prob dont need it if we use blueprints
+from flask import g
+from flask import session
 
 
 def create_app(test_config=None):
@@ -12,8 +11,6 @@ def create_app(test_config=None):
     """
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        # a default secret that should be overridden by instance config
-        SECRET_KEY="better-great-very-good-reads",
         # store the database in the instance folder
         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
@@ -31,29 +28,42 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # simple html page to test the app
-    @app.route("/hello")
-    def hello():
-        return render_template("helloworld.html")
-
     # register the database commands
     from . import db
 
     db.init_app(app)
 
     # apply the blueprints to the app
-    # from . import auth
+    from . import auth
     from . import book
     from . import home
-    # from . import library
+    from . import library
     from . import search
 
-    # app.register_blueprint(auth.bp)
+    app.register_blueprint(auth.bp)
     app.register_blueprint(book.bp)
     app.register_blueprint(home.bp)
-    # app.register_blueprint(library.bp)
+    app.register_blueprint(library.bp)
     app.register_blueprint(search.bp)
 
+    # Set a user ID to bypass the login requirement for development
+    @app.before_request
+    def load_logged_in_user():
+        # check if there's a session
+        if "user_id" in session:
+            # if there is, set the user to the session user
+            g.user = {"id": session["user_id"]}
+
+        else:
+            # make the default user id 1 for dev to bypass login
+            # this is a temporary solution to avoid login for dev
+            # in prod, the user should be redirected to the login page
+            g.user = {"id": 1}
+
     app.debug = True
+
+    @app.route("/test")
+    def test():
+        return "<h1>Test Page</h1>"
 
     return app

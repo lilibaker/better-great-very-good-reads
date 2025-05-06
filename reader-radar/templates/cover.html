@@ -1,0 +1,7 @@
+<!-- an HTML template for rendering the book cover and linking it to the book page -->
+
+<div>
+    <a href="/book/{{ book.id }}">
+        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="{{ book.title }}">
+    </a>
+</div>

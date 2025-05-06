@@ -10,19 +10,41 @@
 <body style="background-color: #fffaf8;">
 
   <div class="topnav">
-    <a href="#ReaderRadar">Reader Radar</a>
-    <a href="#Library" class="active">Library</a>
-    <input type="text" placeholder="Search Books">
-    <button type="submit">
-      <img src="../Assets/search.png" alt="Search">
-    </button>
+    <a href="/">Reader Radar</a>
+    <a href="/library" class="active">Library</a>
+    <form action="/search" method="POST" style="display: inline;">
+      <input type="text" name="query" placeholder="Search Books" required>
+      <button type="submit">
+          <img src="{{ url_for('static', filename='Assets/search.png') }}" alt="Search">
+      </button>
+    </form>
   </div>
 
   <div class="current-section">
     <div style="padding-top: 50px;"></div>
     <h1 class="section-title">Currently Reading</h1>
     <div class="current-grid" id="currentGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in current %}
+      <div class="card">
+        {% include "cover.html" with context %}
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <div class="dropdown">
+            <button class="button">Move to List</button>
+            <div class="dropdown-content">
+              <form method="POST" action="/move-book">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="hidden" name="old_list_name" value="Current Reads">
+                <button type="submit" name="new_list_name" value="Unread">Unread</button>
+                <button type="submit" name="new_list_name" value="Wish List">Wish List</button>
+                <button type="submit" name="new_list_name" value="Finished">Finished</button>
+                <button type="submit" name="new_list_name" value="Remove Book">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -30,7 +52,27 @@
   <div class="unread-section">
     <h1 class="section-title">Unread Books</h1>
     <div class="unread-grid" id="unreadGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in unread %}
+      <div class="card">
+        {% include "cover.html" with context %}
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <div class="dropdown">
+            <button class="button">Move to List</button>
+            <div class="dropdown-content">
+              <form method="POST" action="/move-book">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="hidden" name="old_list_name" value="Unread">
+                <button type="submit" name="new_list_name" value="Current Reads">Current</button>
+                <button type="submit" name="new_list_name" value="Wish List">Wish List</button>
+                <button type="submit" name="new_list_name" value="Finished">Finished</button>
+                <button type="submit" name="new_list_name" value="Remove Book">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -38,7 +80,27 @@
   <div class="wishlist-section">
     <h1 class="section-title">Wishlist</h1>
     <div class="wishlist-grid" id="wishlistGrid">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in wish_list %}
+      <div class="card">
+        {% include "cover.html" with context %}
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <div class="dropdown">
+            <button class="button">Move to List</button>
+            <div class="dropdown-content">
+              <form method="POST" action="/move-book">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="hidden" name="old_list_name" value="Wish List">
+                <button type="submit" name="new_list_name" value="Current Reads">Current</button>
+                <button type="submit" name="new_list_name" value="Unread">Unread</button>
+                <button type="submit" name="new_list_name" value="Finished">Finished</button>
+                <button type="submit" name="new_list_name" value="Remove Book">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
@@ -46,94 +108,32 @@
   <div class="finished-section">
     <h1 class="section-title">Finished Books</h1>
     <div class="finished-grid" id="finishedGrids">
-      <!-- Dynamic grids will be inserted here by Python -->
+      {% for book in finished %}
+      <div class="card">
+        {% include "cover.html" with context %}
+        <div class="content">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <div class="dropdown">
+            <button class="button">Move to List</button>
+            <div class="dropdown-content">
+              <form method="POST" action="/move-book">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="hidden" name="old_list_name" value="Finished">
+                <button type="submit" name="new_list_name" value="Current Reads">Current</button>
+                <button type="submit" name="new_list_name" value="Unread">Unread</button>
+                <button type="submit" name="new_list_name" value="Wish List">Wish List</button>
+                <button type="submit" name="new_list_name" value="Remove Book">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     <div style="padding-bottom: 30px;"></div>
   </div>
 
-  <script>
-    // Example data for dynamic sections
-    const bookData = {
-      "current": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 2'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 3'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Currently Reading 4'}
-
-      ],
-      "unread": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Unread Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Unread Book 2'}
-      ],
-      "wishlist": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 2'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 3'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 4'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 5'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 6'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 7'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 8'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 9'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 10'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Wishlist Book 11'}
-      ],
-      "finished": [
-        { imageSrc: 'https://placehold.co/600x800', title: 'Finished Book 1'},
-        { imageSrc: 'https://placehold.co/600x800', title: 'Finished Book 2' }
-      ]
-    };
-
-    // Function to generate grids dynamically
-    function generateGrid(sectionId, data, sectionName) {
-      const container = document.getElementById(sectionId);
-      data.forEach(book => {
-        const gridDiv = document.createElement('div');
-        gridDiv.classList.add('card');
-        
-        const imageDiv = document.createElement('div');
-        const img = document.createElement('img');
-        img.src = book.imageSrc;
-        img.alt = book.title;
-        imageDiv.appendChild(img);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.classList.add('content');
-
-        const titleDiv = document.createElement('h2');
-        titleDiv.classList.add('card-title');
-        titleDiv.textContent = book.title;
-
-        const button = document.createElement('button');
-        button.classList.add('button');
-        
-        // Set button text based on the section
-        if (sectionName === 'finished') {
-          button.textContent = 'Review';
-        } else if (sectionName === 'current') {
-          button.textContent = 'Move to Finished';
-        } else if (sectionName === 'wishlist') {
-          button.textContent = 'Move to Unread';
-        } else if (sectionName === 'unread') {
-          button.textContent = 'Move to Currently Reading';
-        }
-
-        contentDiv.appendChild(titleDiv);
-        contentDiv.appendChild(button);
-
-        gridDiv.appendChild(imageDiv);
-        gridDiv.appendChild(contentDiv);
-
-        container.appendChild(gridDiv);
-      });
-    }
-
-    // Generate grids for all sections
-    generateGrid('currentGrids', bookData['current'], 'current');
-    generateGrid('unreadGrids', bookData['unread'], 'unread');
-    generateGrid('wishlistGrid', bookData['wishlist'], 'wishlist');
-    generateGrid('finishedGrids', bookData['finished'], 'finished');
-  </script>
+  {% include "footer.html" with context %}
 
 </body>
 </html>

@@ -1,33 +1,115 @@
-<!-- add extend base url -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reader Radar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-{% block header %}
-  <h1>{% block title %}Book{% endblock %}</h1>
-{% endblock %}
+<body style="background-color: #fffaf8;">
 
-{% block content %}
+  <div class="topnav">
+    <a href="/">Reader Radar</a>
+    <a href="/library">Library</a>
+    <form action="/search" method="POST" style="display: inline;">
+      <input type="text" name="query" placeholder="Search Books" required>
+      <button type="submit">
+        <img src="{{ url_for('static', filename='Assets/search.png') }}" alt="Search">
+      </button>
+    </form>
+  </div>
 
-<!-- Display book cover using Open Library API -->
-<h1>{{ book.title }}</h1>
+  <div class="popular-section">
+    <div style="padding-top: 50px;"></div>
+    <h1 class="section-title">{{ book.title }}</h1>
 
-{% if book.isbn %}
-  <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book Cover">
-{% endif %}
+    <div class="recommendation-grid">
+      <div class="recommendation-image">
+        {% if book.isbn %}
+        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book Cover">
+        {% endif %}
+      </div>
+      <div class="recommendation-content">
+        <h1 class="section-title">{{ book.author }}</h1>
+        {% include "list_button.html" with context %}
 
-<p>Author: {{ book.author }}</p>
-<p>ISBN: {{ book.isbn }}</p>
-<p>page_length: {{ book.page_length }}</p>
-<p>Synopsis: {{ book.synopsis }}</p>
-<p>rating: {{ book.rating }}</p>
+        <body class="synopsis">{{ book.synopsis }}</body>
+      </div>
+    </div>
+    <div style="padding-bottom: 100px;">
+    </div>
 
-<!-- for review in review print review -->
-{% for review in reviews %}
-  <h2>Reviews</h2>
-  <p>Rating: {{ review.rating }}</p>
-  <p>{{ review.review_text }}</p>
-{% endfor %}
+    <div class="comments">
+      <div style="padding-top: 50px;">
+      </div>
+      <h1 class="section-title">Reviews</h1>
+    </div>
+    <div class="review-input-container" style="display:flex; flex-direction:column; gap:8px; margin: 20px 80px;">
+      <form method="POST" action="/book/submit-review">
+        <input type="hidden" name="book_id" value="{{ book.id }}">
 
+        <!-- Star Rating -->
+        <div class="star-rating">
+          <input type="hidden" id="rating" name="rating" value="0">
+          <span class="fa fa-star" data-value="1"></span>
+          <span class="fa fa-star" data-value="2"></span>
+          <span class="fa fa-star" data-value="3"></span>
+          <span class="fa fa-star" data-value="4"></span>
+          <span class="fa fa-star" data-value="5"></span>
+        </div>
 
-{% endblock %}
+        <textarea id="newComment" name="review_text" rows="4" placeholder="Write your review here..."></textarea>
+        <div style="display:flex; justify-content:flex-end;">
+          <button type="submit" id="submitComment" class="button">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="recommendation-grids" id="recommendationGrids">
+      <!-- Dynamic grids will be inserted here by Python -->
+    </div>
+    <div class="comments-section">
+      <h1 class="section-title">User Reviews</h1>
 
+      {% for review in reviews %}
+      <div class="comment-card">
+        <div class="comment-header">
+          <span class="username">{{ review.username }}</span>
+        </div>
+        <div class="comment-body">
+          <p>{{ review.review_text }}</p>
+        </div>
+        <div class="comment-footer">
+          <div class="stars">
+            {% for i in range(1, 6) %}
+            <span class="fa {% if i <= review.rating %}fa-star checked{% else %}fa-star-o{% endif %}"></span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
 
+    <div style="padding-bottom: 100px;">
+    </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stars = document.querySelectorAll('.star-rating .fa-star');
+      const ratingInput = document.getElementById('rating');
+
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const rating = star.getAttribute('data-value');
+          ratingInput.value = rating;
+
+          // Highlight the selected stars
+          stars.forEach(s => {
+            s.classList.toggle('checked', s.getAttribute('data-value') <= rating);
+          });
+        });
+      });
+    });
+  </script>
+
+</body

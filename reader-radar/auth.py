@@ -1,5 +1,4 @@
 import functools
-import hashlib
 
 from flask import Blueprint
 from flask import flash
@@ -9,8 +8,6 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from werkzeug.security import check_password_hash
-from werkzeug.security import generate_password_hash
 
 from .db import get_db
 
@@ -30,45 +27,17 @@ def login_required(view):
     return wrapped_view
 
 
-@bp.before_app_request
-def load_logged_in_user():
-    """If a user id is stored in the session, load the user object from
-    the database into ``g.user``."""
-    user_id = session.get("user_id")
-
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = (
-            get_db().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
-        )
-
-
-def hash_password(password):
-    """
-    Calculate the SHA-256 hash of a password.
-
-    Args:
-        password: A string representing the password to hash.
-
-    Returns:
-        A string representing the hex digits of the SHA-256 hash of the
-        password.
-    """
-    password_bytes = password.encode("utf-8")
-    return hashlib.sha256(password_bytes).hexdigest()
-
-
 @bp.route("/register", methods=("GET", "POST"))
 def register():
     """Register a new user.
 
-    Validates that the username is not already taken. Hashes the
-    password for security.
+    Validates that the username is not already taken.
     """
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
         db = get_db()
         error = None
 
@@ -76,14 +45,37 @@ def register():
             error = "Username is required."
         elif not password:
             error = "Password is required."
+        elif not first_name:
+            error = "First name is required."
+        elif not last_name:
+            error = "Last name is required."
 
         if error is None:
             try:
-                new_user_command = (
-                    f"INSERT INTO users (username, password)"
-                    f" VALUES ('{username}', '{hash_password(password)}')"
+                # Insert the user into the users table
+                db.execute(
+                    "INSERT INTO users (username, password) VALUES (?, ?)",
+                    (username, password),
                 )
-                db.execute(new_user_command)
+                # Get the user ID of the newly created user
+                user_id = db.execute(
+                    "SELECT id FROM users WHERE username = ?", (username,)
+                ).fetchone()["id"]
+
+                # Insert the names into the names table
+                db.execute(
+                    "INSERT INTO names (user_id, first_name, last_name) VALUES (?, ?, ?)",
+                    (user_id, first_name, last_name),
+                )
+
+                # Insert default book lists into the book_lists table
+                default_lists = ["Current Reads", "Unread", "Wish List", "Finished"]
+                for list_name in default_lists:
+                    db.execute(
+                        "INSERT INTO book_lists (user_id, list_name) VALUES (?, ?)",
+                        (user_id, list_name),
+                )
+                
                 db.commit()
             except db.IntegrityError:
                 # The username was already taken, which caused the
@@ -91,7 +83,7 @@ def register():
                 error = f"User {username} is already registered."
             else:
                 # Success, go to the login page.
-                return redirect(url_for("auth.login"))
+                return redirect("/auth/login")
 
         flash(error)
 
@@ -108,7 +100,7 @@ def login():
         error = None
         query = (
             f"SELECT * FROM users WHERE username = '{username}' AND"
-            f" password = '{hash_password(password)}';"
+            f" password = '{password}';"
         )
         user = db.execute(query).fetchone()
 
@@ -119,7 +111,7 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session["user_id"] = user["id"]
-            return redirect(url_for("index"))
+            return redirect("/")
 
         flash(error)
 
@@ -130,4 +122,4 @@ def login():
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
-    return redirect(url_for("index"))
+    return redirect("/")
