@@ -98,6 +98,7 @@ a:any-link {
     border-radius: 10px;
     text-decoration: none;
     font-family: Baskervville;
+    width: fit-content;
 }
 
 .button:hover {
@@ -264,5 +265,46 @@ a:any-link {
 
   .checked {
     color:black;
+  }
+  .comments-section {
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .comment-card {
+    background-color: #fffaf8;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .comment-header .username {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .comment-body p {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .comment-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .stars .fa {
+    margin-left: 4px;
+    font-size: 18px;
+  }
+  
+  .checked {
+    color: black;
   }
 
