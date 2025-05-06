@@ -1,21 +1,42 @@
 h1 {
-    color:black; font-family: Baskervville; font-size: 36px; font-style:normal; font-weight: 400; line-height: normal
+  color: black;
+  font-family: Baskervville;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
 }
 
-header {color:black; font-family: Baskervville; font-size:30px; font-style:normal; font-weight: 400; line-height: normal
-
+header {
+  color: black;
+  font-family: Baskervville;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
 }
 
-body {color:black; font-family: Baskervville; font-size: 20px; font-style:normal; font-weight: 400; line-height: normal
-
+body {
+  color: black;
+  font-family: Baskervville;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
 }
 
-h2 {align-self: flex-start; color:black; font-family: Baskervville; font-size: 25px; font-style:normal; font-weight: 400; line-height: normal
-
+h2 {
+  align-self: flex-start;
+  color: black;
+  font-family: Baskervville;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
 }
 
 a:any-link {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 /* Style the dropdown container */
@@ -77,234 +98,272 @@ a:any-link {
 /* Style the "Remove" button specifically */
 .dropdown-content button[name="new_list_name"][value="Remove Book"],
 .dropdown-content button[name="new_list_name"][value="Remove"] {
-  background-color: #D9534F; /* Red color */
-  color: #fff; /* White text */
+  background-color: #D9534F;
+  /* Red color */
+  color: #fff;
+  /* White text */
 }
 
 /* Add hover effect for the "Remove" button */
 .dropdown-content button[name="new_list_name"][value="Remove Book"]:hover,
 .dropdown-content button[name="new_list_name"][value="Remove"]:hover {
-  background-color: #C9302C; /* Darker red on hover */
+  background-color: #C9302C;
+  /* Darker red on hover */
 }
 
 .button {
-    background-color: #2F7A7A;
-    border: none;
-    color: #fffaf8;
-    padding: 7px 13px;
-    text-align: center;
-    display: inline-block;
-    font-size: 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: Baskervville;
-    width: fit-content;
+  background-color: #2F7A7A;
+  border: none;
+  color: #fffaf8;
+  padding: 7px 13px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: Baskervville;
+  width: fit-content;
 }
 
 .button:hover {
-    box-shadow: 5px 3px rgba(0,0,0,0.12);
-    cursor: pointer;
+  box-shadow: 5px 3px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
 }
 
-.topnav{
-    background-color: #C6D4D4;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
+.topnav {
+  background-color: #C6D4D4;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
 }
 
 
 .topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 22px 50px;
-    font-size: 30px;
-    text-decoration: none !important;
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 22px 50px;
+  font-size: 30px;
+  text-decoration: none !important;
 }
 
 .topnav a:hover {
-    border-bottom: 3px solid black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  border-bottom: 3px solid black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 .topnav a.active {
-    border-bottom: 3px solid black;
-    text-decoration: none;
-  }
+  border-bottom: 3px solid black;
+  text-decoration: none;
+}
 
 .topnav input[type=text] {
-    float:inline-end;
-    border: none;
-    margin-right: 22;
-    margin-top: 15.5;
-    font-size: 20px;
-    padding: 10px 20px;
-    border-radius:8px;
-    background-color: #fffaf8;
+  float: inline-end;
+  border: none;
+  margin-right: 22;
+  margin-top: 15.5;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #fffaf8;
 }
 
 .topnav button {
-    position: fixed;
-    top: 6px;
-    right: 26px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right:0;
-    margin-top: 15.5;
-    padding: 12px 20p;
+  position: fixed;
+  top: 6px;
+  right: 26px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 0;
+  margin-top: 15.5;
+  padding: 12px 20p;
 }
+
 .topnav button img {
-   width: 24px;
-   height: 24px 
+  width: 24px;
+  height: 24px
 }
 
 .section {
-    padding: 60px 80px;
-  }
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-  }
-
-  .popular-section {
-    padding: 60px 80px;
-  }
-  
-  .popular-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .current-grid, .unread-grid, .wishlist-grid, .finished-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
-    justify-content: flex-start;
-    margin:0;
-    padding:0;
-  }
-
-.current-section, .unread-section, .wishlist-section, .finished-section  {
   padding: 60px 80px;
 }
-  .card .button {
-    align-self: flex-start; /* Don't stretch */
-  }
-  .card img {
-    width: 300px;
-    height: auto;
-    aspect-ratio: 2 / 3; 
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  .card img:hover {
-    box-shadow: 5px 3px rgba(0,0,0,0.12);
-    cursor: pointer;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
-  
-  .recommendation-section {
-    padding: 60px 80px;
-  }
 
-  .recommendation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-
-  }
-  
-  .recommendation-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
-    .recommendation-image img:hover {
-    box-shadow: 5px 3px rgba(0,0,0,0.12);
-    cursor: pointer;
+.popular-section {
+  padding: 60px 80px;
 }
-  
-  .recommendation-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .recommendation-content .highlight-image {
-    width: 60%;
-    height: auto;
-    border-radius: 8px;
-  }
- 
-  .recommendation-grids {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0px 80px;
-  }
 
+.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
 
-  .checked {
-    color:black;
-  }
-  .comments-section {
-    padding: 60px 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .comment-card {
-    background-color: #fffaf8;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-  }
-  
-  .comment-header .username {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .comment-body p {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .comment-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .stars .fa {
-    margin-left: 4px;
-    font-size: 18px;
-  }
-  
-  .checked {
-    color: black;
-  }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
 
+.current-grid,
+.unread-grid,
+.wishlist-grid,
+.finished-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.current-section,
+.unread-section,
+.wishlist-section,
+.finished-section {
+  padding: 60px 80px;
+}
+
+.card .button {
+  align-self: flex-start;
+  /* Don't stretch */
+}
+
+.card img {
+  width: 300px;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card img:hover {
+  box-shadow: 5px 3px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+.recommendation-section {
+  padding: 60px 80px;
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+
+}
+
+.recommendation-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.recommendation-image img:hover {
+  box-shadow: 5px 3px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+.recommendation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recommendation-content .highlight-image {
+  width: 60%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.recommendation-grids {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0px 80px;
+}
+
+.checked {
+  color: black;
+}
+
+.comments-section {
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment-card {
+  background-color: #fffaf8;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.comment-header .username {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.comment-body p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.stars .fa {
+  margin-left: 4px;
+  font-size: 18px;
+}
+
+.checked {
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.star-rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  padding-bottom: 15px;
+}
+
+.star-rating .fa-star {
+  font-size: 24px;
+  color: #ccc;
+}
+
+.star-rating .fa-star.checked {
+  color: black;
+}
+
+.submitComment {
+  padding-top: 10px;
+}
