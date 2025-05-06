@@ -18,6 +18,75 @@ a:any-link {
     text-decoration: none !important;
 }
 
+/* Style the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the main button */
+.dropdown .button {
+  background-color: #2F7A7A;
+  border: none;
+  color: #fffaf8;
+  padding: 7px 13px;
+  font-size: 20px;
+  border-radius: 10px;
+  font-family: Baskervville;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fffaf8;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1;
+  padding: 10px;
+}
+
+/* Style the buttons inside the dropdown */
+.dropdown-content button {
+  background-color: #2F7A7A;
+  border: none;
+  color: #fffaf8;
+  padding: 7px 13px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: Baskervville;
+  cursor: pointer;
+  margin: 5px 0;
+  width: 100%;
+  text-align: left;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Add hover effects for dropdown buttons */
+.dropdown-content button:hover {
+  background-color: #256666;
+}
+
+/* Style the "Remove" button specifically */
+.dropdown-content button[name="new_list_name"][value="Remove Book"],
+.dropdown-content button[name="new_list_name"][value="Remove"] {
+  background-color: #D9534F; /* Red color */
+  color: #fff; /* White text */
+}
+
+/* Add hover effect for the "Remove" button */
+.dropdown-content button[name="new_list_name"][value="Remove Book"]:hover,
+.dropdown-content button[name="new_list_name"][value="Remove"]:hover {
+  background-color: #C9302C; /* Darker red on hover */
+}
+
 .button {
     background-color: #2F7A7A;
     border: none;
