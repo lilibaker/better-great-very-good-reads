@@ -29,7 +29,23 @@
         {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
-          <button class="button">Move to Finished</button>
+          <form class="button" method="POST" action="/move-book">
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            
+            <!-- Current list the book belongs to -->
+            <input type="hidden" name="old_list_name" value="Current Reads">
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List</label>
+            <select name="new_list_name" id="new_list_name">
+                <option value="Unread">Unread</option>
+                <option value="Wish List">Wish List</option>
+                <option value="Finished">Finished</option>
+                <option value="Remove Book">Remove Book</option>
+            </select>
+            
+            <button type="submit">Move to List</button>
+          </form>
         </div>
       </div>
       {% endfor %}
@@ -45,7 +61,23 @@
         {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
-          <button class="button">Move to Currently Reading</button>
+          <form class="button" method="POST" action="/move-book">
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            
+            <!-- Current list the book belongs to -->
+            <input type="hidden" name="old_list_name" value="Unread">
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List</label>
+            <select name="new_list_name" id="new_list_name">
+                <option value="Current Reads">Current</option>
+                <option value="Wish List">Wish List</option>
+                <option value="Finished">Finished</option>
+                <option value="Remove Book">Remove Book</option>
+            </select>
+            
+            <button type="submit">Move to List</button>
+          </form>
         </div>
       </div>
       {% endfor %}
@@ -61,7 +93,23 @@
         {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
-          <button class="button">Move to Unread</button>
+          <form class="button" method="POST" action="/move-book">
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            
+            <!-- Current list the book belongs to -->
+            <input type="hidden" name="old_list_name" value="Wish List">
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List</label>
+            <select name="new_list_name" id="new_list_name">
+                <option value="Current Reads">Current</option>
+                <option value="Unread">Unread</option>
+                <option value="Finished">Finished</option>
+                <option value="Remove Book">Remove Book</option>
+            </select>
+            
+            <button type="submit">Move to List</button>
+          </form>
         </div>
       </div>
       {% endfor %}
@@ -77,7 +125,23 @@
         {% include "cover.html" with context %}
         <div class="content">
           <h2 class="card-title">{{ book.title }}</h2>
-          <button class="button">Review</button>
+          <form class="button" method="POST" action="/move-book">
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            
+            <!-- Current list the book belongs to -->
+            <input type="hidden" name="old_list_name" value="Finished">
+            
+            <!-- Select a new list to move the book to -->
+            <label for="new_list">Move to List</label>
+            <select name="new_list_name" id="new_list_name">
+                <option value="Current Reads">Current Reads</option>
+                <option value="Unread">Unread</option>
+                <option value="Wish List">Wish List</option>
+                <option value="Remove Book">Remove Book</option>
+            </select>
+            
+            <button type="submit">Move to List</button>
+          </form>
         </div>
       </div>
       {% endfor %}
