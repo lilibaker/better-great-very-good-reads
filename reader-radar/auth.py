@@ -37,6 +37,8 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
         db = get_db()
         error = None
 
@@ -44,14 +46,28 @@ def register():
             error = "Username is required."
         elif not password:
             error = "Password is required."
+        elif not first_name:
+            error = "First name is required."
+        elif not last_name:
+            error = "Last name is required."
 
         if error is None:
             try:
-                new_user_command = (
-                    f"INSERT INTO users (username, password)"
-                    f" VALUES ('{username}', '{password}')"
+                # Insert the user into the users table
+                db.execute(
+                    "INSERT INTO users (username, password) VALUES (?, ?)",
+                    (username, password),
                 )
-                db.execute(new_user_command)
+                # Get the user ID of the newly created user
+                user_id = db.execute(
+                    "SELECT id FROM users WHERE username = ?", (username,)
+                ).fetchone()["id"]
+
+                # Insert the names into the names table
+                db.execute(
+                    "INSERT INTO names (user_id, first_name, last_name) VALUES (?, ?, ?)",
+                    (user_id, first_name, last_name),
+                )
                 db.commit()
             except db.IntegrityError:
                 # The username was already taken, which caused the

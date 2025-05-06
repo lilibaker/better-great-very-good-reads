@@ -164,3 +164,20 @@ def add_book():
 
     print("Error moving book")
     return redirect(url_for("library.library"))
+
+def get_first_name(user_id):
+    """Get first name of user"""
+    first_name = (
+        get_db()
+        .execute(
+            "SELECT * "
+            "FROM users u "
+            "JOIN names n ON u.id = n.user_id "
+            "WHERE u.id = ?",
+            (user_id,),
+        )
+        .fetchone()
+    )
+    if first_name is None:
+        abort(404, f"User name for id {user_id} doesn't exist")
+    return first_name
