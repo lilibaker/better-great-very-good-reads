@@ -2,9 +2,10 @@
 
 -- Insert users
 INSERT INTO users (username, password) VALUES
-('rose_tyler', 'badwolf'),
-('martha_jones', 'freedom'),
-('donna_noble', 'noble123');
+('rose', 'badwolf'),
+('martha', 'freedom'),
+('donna', 'noble123');
+
 
 -- Insert names
 INSERT INTO names (user_id, first_name, last_name) VALUES

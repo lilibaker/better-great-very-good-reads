@@ -24,12 +24,14 @@ def library():
     unread = queries.get_book_list_books("Unread", g.user["id"])
     wish_list = queries.get_book_list_books("Wish List", g.user["id"])
     finished = queries.get_book_list_books("Finished", g.user["id"])
+    name = queries.get_first_name(g.user["id"])
     return render_template(
         "library.html",
         current=current,
         unread=unread,
         wish_list=wish_list,
         finished=finished,
+        name=name,
     )
 
 

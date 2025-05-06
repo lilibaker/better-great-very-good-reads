@@ -52,7 +52,8 @@
     </div>
   </div>
 
-  <p>Logged in: {{name.first_name}} {{name.last_name}}</p>
+  {% include "footer.html" with context %}
+
   
   <script>
     // Rating for the recommendation of the day

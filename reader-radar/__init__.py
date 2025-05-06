@@ -65,4 +65,8 @@ def create_app(test_config=None):
 
     app.debug = True
 
+    @app.route("/test")
+    def test():
+        return "<h1>Test Page</h1>"
+
     return app
