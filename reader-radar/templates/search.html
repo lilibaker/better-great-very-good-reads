@@ -58,10 +58,10 @@
     <div class="recommendation-content">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 class="section-title" style="margin: 0;">{{ book.title }}</h1>
-        <button class="button">Add to Wishlist</button>
     </div>
     <h2 style="margin: 5px 0;">{{ book.author }}</h2>
     <p id="rec_synopsis">{{ book.synopsis }}</p>
+    {% include "list_button.html" with context %}
     </div>
 </div>
 {% endfor %}
