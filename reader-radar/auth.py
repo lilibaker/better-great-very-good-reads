@@ -68,6 +68,15 @@ def register():
                     "INSERT INTO names (user_id, first_name, last_name) VALUES (?, ?, ?)",
                     (user_id, first_name, last_name),
                 )
+
+                # Insert default book lists into the book_lists table
+                default_lists = ["Current Reads", "Unread", "Wish List", "Finished"]
+                for list_name in default_lists:
+                    db.execute(
+                        "INSERT INTO book_lists (user_id, list_name) VALUES (?, ?)",
+                        (user_id, list_name),
+                )
+                
                 db.commit()
             except db.IntegrityError:
                 # The username was already taken, which caused the
