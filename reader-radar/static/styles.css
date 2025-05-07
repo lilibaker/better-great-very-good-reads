@@ -16,7 +16,7 @@ header {
   line-height: normal
 }
 
-body {
+p {
   color: black;
   font-family: Baskervville;
   font-size: 20px;
@@ -32,7 +32,8 @@ h2 {
   font-size: 25px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal
+  line-height: normal;
+  margin:0
 }
 
 a:any-link {
@@ -366,4 +367,36 @@ textarea {
 
 .submitComment {
   padding-top: 10px;
+}
+
+.background {
+  background-image: url("Assets/SigninBackground.png");
+  margin: 0;
+  padding: 0;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-repeat: no-repeat;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  align-items: center;
+}
+
+.signincenter {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #fffaf8;
+  border-radius: 40px;
+  border: 1px black solid;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  gap: 20px
+
 }
